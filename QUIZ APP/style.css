@@ -1,0 +1,272 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to right,darkblue,rgb(176, 158, 99));
+    overflow-y: hidden;
+}
+
+.quiz-container {
+    /* background-color: white; */
+    
+    background-image: linear-gradient(to right,darkblue,rgb(176, 158, 99));
+
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: 20px auto;
+    display:flex;
+    flex-direction: column;
+    
+}
+.quiz-container button{
+    padding:20px;
+    margin:20px;
+    
+}
+.quiz-container button a{
+    color:white;
+    text-decoration: none;
+}
+h2{
+color:orange;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.nav-list{
+    display:flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+    height:60px;
+    background-color: rgb(88, 6, 88);
+    color:white;
+    border: 2px solid white;
+}
+.nav li{
+    list-style: none;
+}
+.logo{
+    margin-left:-10%;
+    font-size: 30px;
+    font-family:'Brush Script MT', cursive;
+}
+.nav ul li i{
+    margin-right:-580px;
+}
+#icon1{
+    margin-right:-550px;
+}
+.icons:hover{
+    cursor: pointer;
+    color:orange
+}
+
+h1 {
+    font-size: 24px;
+}
+
+.options {
+    text-align: left;
+    margin-top: 20px;
+    cursor:pointer;
+    
+
+}
+.options div{
+    border:2px solid gray;
+    padding:6px;
+    margin:6px;
+    display: flex;
+    justify-content: baseline;
+    gap: 30px;
+    background-color: cornflowerblue;
+    
+}
+
+.options div:hover{
+    background-color: darkblue;
+    
+}
+
+.options label {
+    /* display: inline-block; */
+    /* margin-bottom: 10px; */
+    cursor: pointer;
+    
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#result {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+
+.correct{
+    background-color: green;
+}
+.incorrect{
+    background-color: red;
+}
+#question{
+background-image:linear-gradient(to right, rgb(54, 22, 181),rgb(62, 55, 75));
+    color:white;
+    border:3px solid rgb(45, 12, 72);
+    font-size: 25px;
+    font-family:'Times New Roman', Times, serif;
+   
+}
+#index{
+    font-family:'Times New Roman', Times, serif;
+    font-size: 30px;
+    border:2px solid black;
+    width:35px;
+    margin-left:47%;
+    color:white;
+    background-color: darkblue;
+    border-radius: 60px;
+    
+    
+}
+
+#score{
+    width:300px;
+    height:300px;
+    background-image: linear-gradient(to right,red,orangered,orange);
+    margin-left:39%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+    
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+    
+
+
+#greet{
+    color:white;
+}
+
+
+
+/* dances
+const questions = [
+    {
+        question: " Name the popular folk song of Uttar Pradesh?",
+        options: ["Maang","Kajri","Baul","Boli"],
+    correctAnswer: "Kajri"
+    },
+    {
+        question: "In which State of India Luddi dance is performed?",
+        options: ["Haryana"," Rajasthan","West-Bengal","Madhya Pradesh"],
+        correctAnswer: "Haryana"
+    },
+    {
+        question: "Ankia Nat is a dance form of:",
+        options: ["Andhra Pradesh","Bihar","Assam","JK"],
+        correctAnswer: "Assam"
+    },
+    {
+        question: " Rouf is a dance of which State of India?",
+        options: ["Andhra Pradesh","TamilNadu","JK","Assam"],
+        correctAnswer: "JK"
+    },{
+        question: " Name the dance which was revived by Vallathol?",
+        options: ["Odissi","Kathakali","Manipuri","Maang"],
+        correctAnswer: "Kathakali"
+    }
+
+    ]; */
+
+    /* highest
+    const questions = [
+        {
+            question: "Which is the highest or tallest mountain peak in India?",
+            options: ["Kangchenjunga","Mount Everest","K2","Vindhya Range"],
+            correctAnswer: "Kangchenjunga"
+        },
+        {
+            question: "Which is the highest or tallest mountain peak in India?",
+            options: ["Kangchenjunga","Mount Everest","K2","Vindhya Range"],
+            correctAnswer: "Kangchenjunga"
+        },
+        {
+            question: "Which is the highest or tallest mountain peak in India?",
+            options: ["Kangchenjunga","Mount Everest","K2","Vindhya Range"],
+            correctAnswer: "Kangchenjunga"
+        }
+    
+        ]; */
+        /* ciites
+        const questions = [
+            {
+                question: " Harappa is situated on the banks of which river?",
+                options: ["Indus","Ravi","Kaveri","Godavari"],
+                correctAnswer: "Ravi"
+            },
+            {
+                question: " Srinagar is situated on the banks of which river?",
+                options: ["Kaveri","Ganges","Jhelum","Hooghly"],
+                correctAnswer: "Jhelum"
+            },
+            {
+                question: " Surat is situated on the banks of which river?",
+                options: ["Mahanadi","Tapti","Narmada","Son"],
+                correctAnswer: "Tapti"
+            }
+            ,
+            {
+                question: " Nasik is situated on the banks of which river?",
+                options: ["Godavari","Tapti","Narmada","Son"],
+                correctAnswer: "Godavari"
+            },
+            {
+                question: " Vijayawada is situated on the banks of which river?",
+                options: ["Godavari","Yamuna","Narmada","Dark woman"],
+                correctAnswer: "Dark Woman"
+            }
+        
+            ]; */
+
+            /* :first   const questions = [
+                {
+                    question: "Who was the first Prime Minister of India?",
+                    options: [" Subhash Chandra Bose","Indira Gandhi","Pandit Jawaharlal Nehru"," Lal Bahadur Shastri"],
+                    correctAnswer: "Pandit Jawaharlal Nehru"
+                },
+                {
+                    question: "Who was the first President of India?",
+                    options: ["Pratibha Patil"," B.R. Ambedkar","Dr. Rajendra Prasad"," Pandit Jawaharlal Nehru"],
+                    correctAnswer: "Dr. Rajendra Prasad"
+                },
+                {
+                    question: "Who was the first Indian to win a Nobel Prize? ",
+                    options: [" Rabindranath Tagore","Amartya Sen","Indira Gandhi","J.R.D Tata"],
+                    correctAnswer: "Rabindranath Tagore"
+                },
+                {
+                    question: "Who was the first Speaker of Lok Sabha?",
+                    options: [" Shivraj Patil","Hukam Singh","Ganesh Vasudev Mavalankar","Neelam Sanjiva Reddy"],
+                    correctAnswer: "Ganesh Vasudev Mavalankar"
+                },
+                {
+                    question: "Who was the first woman to receive the Bharat Ratna? ",
+                    options: [" Lata Mangeshkar","Indira Gandhi","Pratibha Patil","Mother Teresa"],
+                    correctAnswer: "Indira Gandhi"
+                }
+            
+                ]; */
+                

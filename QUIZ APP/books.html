@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Quiz App</title>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Quiz</h1>
+        <p id ="index"></p>
+        <p id="question"></p>
+        <div class="options" id="options">
+            <!-- Options will be dynamically added here -->
+        </div>
+        <button id="next-button">Next</button>
+        <p id="result"></p>
+    </div>
+    <div id="score" class ="hidden">
+
+    </div>
+    <h1 id = "greet"></h1>
+
+    <script>
+        const questions = [
+    {
+        question: "Who wrote the book New Dimensions of India’s Foreign Policy?",
+        options: ["Atal Bihari Vajpayee","Abdul Kalam Azad","Amit Chaudhuri","Raghuram Rajan"],
+        correctAnswer: "Atal Bihari Vajpayee"
+    },
+    {
+        question: "Who wrote the book India Wins Freedom?",
+        options: ["Akhilesh Tilotia"," Abdul Kalam Azad","Amitav Ghosh","A. B. Vajpayee"],
+        correctAnswer: " Abdul Kalam Azad"
+    },
+    {
+        question: "Who wrote the book Wealth of Nations?",
+        options: ["Akhilesh Tilotia","Raghuram Rajan","Adam Smith","None of the above"],
+        correctAnswer: "Adam Smith"
+    },
+    {
+        question: "Who wrote the book The Making of India?",
+        options: ["Akhilesh Tilotia","Amartya Sen","Adam Smith","Amit Chaudhuri"],
+        correctAnswer: "Akhilesh Tilotia"
+    },
+    {
+        question: "Who wrote the book An Autobiography?",
+        options: [" Sardar Patel","Jawaharlal Nehru","Atal Bihari Vajpayee"," S. Radhakrishnan"],
+        correctAnswer: "Jawaharlal Nehru"
+    }
+
+    ];
+    let currentQuestionIndex = 0;
+let score = 0;
+
+const questionElement = document.getElementById('question');
+const optionsElement = document.getElementById('options');
+const resultElement = document.getElementById('result');
+const index = document.getElementById('index');
+const scoreCard = document.getElementById('score');
+const greet = document.getElementById('greet');
+
+function showQuestion() {
+    const currentQuestion = questions[currentQuestionIndex];
+    index.innerText = currentQuestionIndex + 1;
+    questionElement.textContent = currentQuestion.question;
+    optionsElement.innerHTML = '';
+
+    currentQuestion.options.forEach((option, index) => {
+        const division  = document.createElement('div');
+        const radioInput = document.createElement('input');
+        radioInput.type = 'radio';
+        radioInput.name = 'answer';
+        radioInput.id = `option${index}`;
+        radioInput.value = option;
+
+        const label = document.createElement('label');
+        label.textContent = option;
+        label.setAttribute('for', `option${index}`);
+
+        division.appendChild(radioInput);
+        division.appendChild(label);
+        optionsElement.appendChild(division);
+    });
+}
+
+function checkAnswer() {
+    const selectedOption = document.querySelector('input[name="answer"]:checked');
+
+    if (!selectedOption) {
+        alert('Please select an option.');
+        return;
+    }
+
+    const userAnswer = selectedOption.value;
+    const currentQuestion = questions[currentQuestionIndex];
+
+    if (userAnswer === currentQuestion.correctAnswer) {
+        score++;
+    }
+
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < questions.length) {
+        showQuestion();
+    } else {
+        showResult();
+    }
+}
+
+function showResult() {
+    questionElement.style.display = 'none';
+    optionsElement.style.display = 'none';
+    document.getElementById('next-button').style.display = 'none';
+    index.style.marginRight="120em";
+    document.getElementById('index').textContent="Game Over";
+    document.getElementById('index').style.width="190px";
+
+    
+    resultElement.textContent = `Play Again`;
+    document.getElementById('score').classList.remove("hidden");
+if(score==questions.length){
+    scoreCard.textContent = `${score}/${questions.length}`;
+    greet.textContent = "Congratulations!"
+    }
+else if(score>= 3){
+    scoreCard.textContent = `${score}/${questions.length}`;
+    greet.textContent = "Well Done!"
+}
+else if(score<= 2){
+    scoreCard.textContent = `${score}/${questions.length}`;
+    greet.textContent = "Better luck next time !"
+}
+
+}
+
+document.getElementById('next-button').addEventListener('click', checkAnswer);
+
+showQuestion();
+
+
+
+
+    </script>
+</body>
+</html>

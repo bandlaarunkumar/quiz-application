@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    
+    <title>Quiz App</title>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Quiz</h1>
+        <p id ="index"></p>
+        <p id="question"></p>
+        <div class="options" id="options">
+            <!-- Options will be dynamically added here -->
+        </div>
+        <button id="next-button">Next</button>
+        <p id="result"></p>
+    </div>
+    
+    <div id="score" class ="hidden">
+        
+
+    </div>
+    <h1 id = "greet"></h1>
+
+    <script>
+    const questions = [
+                {
+                    question: "Who was the first Prime Minister of India?",
+                    options: [" Subhash Chandra Bose","Indira Gandhi","Pandit Jawaharlal Nehru"," Lal Bahadur Shastri"],
+                    correctAnswer: "Pandit Jawaharlal Nehru"
+                },
+                {
+                    question: "Who was the first President of India?",
+                    options: ["Pratibha Patil"," B.R. Ambedkar","Dr. Rajendra Prasad"," Pandit Jawaharlal Nehru"],
+                    correctAnswer: "Dr. Rajendra Prasad"
+                },
+                {
+                    question: "Who was the first Indian to win a Nobel Prize? ",
+                    options: [" Rabindranath Tagore","Amartya Sen","Indira Gandhi","J.R.D Tata"],
+                    correctAnswer: "Rabindranath Tagore"
+                },
+                {
+                    question: "Who was the first Speaker of Lok Sabha?",
+                    options: [" Shivraj Patil","Hukam Singh","Ganesh Vasudev Mavalankar","Neelam Sanjiva Reddy"],
+                    correctAnswer: "Ganesh Vasudev Mavalankar"
+                },
+                {
+                    question: "Who was the first woman to receive the Bharat Ratna? ",
+                    options: [" Lata Mangeshkar","Indira Gandhi","Pratibha Patil","Mother Teresa"],
+                    correctAnswer: "Indira Gandhi"
+                }
+            
+                ];
+    let currentQuestionIndex = 0;
+let score = 0;
+
+const questionElement = document.getElementById('question');
+const optionsElement = document.getElementById('options');
+const resultElement = document.getElementById('result');
+const index = document.getElementById('index');
+const scoreCard = document.getElementById('score');
+const greet = document.getElementById('greet');
+const time = document.getElementById('sec');
+const count = 10;
+
+const timerDisplay =() => {
+    countdown = setInterval(()=>{
+        count--;
+    time.innerHTML = `${count}`;
+    if(count==0){
+        clearInterval(timerDisplay);
+        checkAnswer();
+    }
+    },1000);
+};
+
+function showQuestion() {
+    const currentQuestion = questions[currentQuestionIndex];
+    index.innerText = currentQuestionIndex + 1;
+    questionElement.textContent = currentQuestion.question;
+    optionsElement.innerHTML = '';
+
+    currentQuestion.options.forEach((option, index) => {
+        const division  = document.createElement('div');
+        const radioInput = document.createElement('input');
+        radioInput.type = 'radio';
+        radioInput.name = 'answer';
+        radioInput.id = `option${index}`;
+        radioInput.value = option;
+
+        const label = document.createElement('label');
+        label.textContent = option;
+        label.setAttribute('for', `option${index}`);
+
+        division.appendChild(radioInput);
+        division.appendChild(label);
+        optionsElement.appendChild(division);
+    });
+}
+
+function checkAnswer() {
+    const selectedOption = document.querySelector('input[name="answer"]:checked');
+
+    if (!selectedOption) {
+        alert('Please select an option.');
+        return;
+    }
+
+    const userAnswer = selectedOption.value;
+    const currentQuestion = questions[currentQuestionIndex];
+
+    if (userAnswer === currentQuestion.correctAnswer) {
+        score++;
+    }
+
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < questions.length) {
+        showQuestion();
+        timerDisplay();
+    } else {
+        showResult();
+    }
+}
+
+function showResult() {
+    questionElement.style.display = 'none';
+    optionsElement.style.display = 'none';
+    document.getElementById('next-button').style.display = 'none';
+    index.style.marginRight="120em";
+    document.getElementById('index').textContent="Game Over";
+    document.getElementById('index').style.width="190px";
+
+    
+    resultElement.textContent = `Play Again`;
+    document.getElementById('score').classList.remove("hidden");
+if(score==questions.length){
+    scoreCard.textContent = `${score}/${questions.length}`;
+    greet.textContent = "Congratulations!"
+    }
+else if(score>= 3){
+    scoreCard.textContent = `${score}/${questions.length}`;
+    greet.textContent = "Well Done!"
+}
+else if(score<= 2){
+    scoreCard.textContent = `${score}/${questions.length}`;
+    greet.textContent = "Better luck next time !"
+}
+
+}
+
+document.getElementById('next-button').addEventListener('click', checkAnswer);
+
+showQuestion();
+
+
+
+
+    </script>
+</body>
+</html>
